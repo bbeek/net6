@@ -1,0 +1,20 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.run": "onSave",
+  "prettier.requireConfig": true,
+  "editor.formatOnSave": true,
+  "eslint.format.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.organizeImports": true
+  },
+  "editor.rulers": [
+    // { "column": 110, "color": "#ff00ff" },
+    {
+      "column": 120,
+      "color": "#ff0000"
+    }
+  ],
+  "editor.semanticHighlighting.enabled": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

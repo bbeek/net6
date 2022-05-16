@@ -1,0 +1,10 @@
+/node_modules
+.git
+.gitignore
+*.esproj
+*.md
+swagger.json
+e2e
+/.angular
+/.vscode
+/dist

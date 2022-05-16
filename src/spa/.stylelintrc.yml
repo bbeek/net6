@@ -1,0 +1,23 @@
+---
+# https://stylelint.io/
+extends:
+  - stylelint-config-standard
+  - stylelint-config-recommended-scss
+  - stylelint-prettier/recommended
+  - stylelint-config-prettier
+plugins:
+  - stylelint-prettier
+  - stylelint-scss
+  - stylelint-order
+rules:
+  prettier/prettier: true
+  order/order:
+    - custom-properties
+    - declarations
+  order/properties-alphabetical-order: true,
+  value-keyword-case:
+    - lower
+    - ignoreKeywords:
+        - A100
+        - A200
+        - A400

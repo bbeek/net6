@@ -1,0 +1,43 @@
+.wrapper {
+  perspective: 10px;
+  header {
+    transform-style: preserve-3d;
+    .background {
+      transform: translateZ(-10px) scale(2);
+    }
+    .foreground {
+      transform: translateZ(-5px) scale(0.5);
+    }
+  }
+}
+
+@keyframes fadeinfromtop {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(1px) translateZ(-5px) scale(0.5);
+  }
+}
+
+@keyframes appear {
+   0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in-from-top-animation {
+    animation-name: fadeinfromtop;
+    animation-duration: 2s;
+  }
+  .appear-animation {
+    animation-name: appear;
+    animation-duration: 4s;
+  }
+}

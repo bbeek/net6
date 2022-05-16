@@ -1,0 +1,148 @@
+---
+root: true
+
+parser: '@typescript-eslint/parser'
+
+parserOptions:
+  project: tsconfig.json
+  sourceType: module
+  ecmaVersion: 2018
+  ecmaFeatures:
+    impliedStrict: true
+
+extends:
+  # https://eslint.org/docs/rules/
+  - eslint:recommended
+
+  # https://github.com/typescript-eslint/
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - plugin:@typescript-eslint/recommended
+
+  # https://github.com/benmosher/eslint-plugin-import
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript
+
+  # https://github.com/prettier/eslint-config-prettier
+  - prettier
+
+plugins:
+  # https://github.com/benmosher/eslint-plugin-import
+  - '@typescript-eslint'
+  # https://github.com/benmosher/eslint-plugin-import
+  - import
+  # https://github.com/prettier/eslint-plugin-prettier
+  - prettier
+
+env:
+  browser: true
+  es6: true
+  node: true
+  jasmine: true
+
+rules:
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-useless-constructor.md
+  # note you must disable the base rule as it can report incorrect errors
+  no-useless-constructor: 'off'
+
+  ## TypeScript ##
+  '@typescript-eslint/no-useless-constructor': 'error'
+  '@typescript-eslint/array-type': 'off'
+  '@typescript-eslint/consistent-type-definitions': error
+  '@typescript-eslint/explicit-member-accessibility':
+    - error
+    - accessibility: explicit
+  '@typescript-eslint/indent': error
+  '@typescript-eslint/member-delimiter-style':
+    - error
+    - multiline:
+        delimiter: semi
+        requireLast: true
+      singleline:
+        delimiter: semi
+        requireLast: false
+  '@typescript-eslint/member-ordering': error
+  '@typescript-eslint/no-explicit-any': 'off'
+  '@typescript-eslint/no-non-null-assertion': error
+  '@typescript-eslint/no-parameter-properties': 'off'
+  '@typescript-eslint/prefer-for-of': error
+  '@typescript-eslint/prefer-function-type': error
+  '@typescript-eslint/quotes':
+    - error
+    - single
+  '@typescript-eslint/semi':
+    - error
+    - always
+  '@typescript-eslint/unified-signatures': error
+  '@typescript-eslint/naming-convention':
+    - error
+    - selector: interface
+      format:
+        - PascalCase
+      custom:
+        regex: '^I[A-Z]'
+        match: true
+
+  # disable the rule for all files: overrides enables it for ts files.
+  '@typescript-eslint/explicit-function-return-type': 'off'
+
+  # Disable rules:
+  # - no-unsafe-assignment,
+  # - no-unsafe-member-access,
+  # - no-unsafe-call,
+  # - no-unsafe-return
+  # - restrict-template-expressions (when template calls something that returns any)
+  # There is something wrong with the interpetation of the TypeScript optional chaining (?. operator).
+  # Nswag uses it and we use it. Above mentioned rules are triggered. I don't think using ?. is causing unsafe / any issues.
+  # Maybe, in the future, this rule can be enabled.
+  '@typescript-eslint/no-unsafe-assignment': 'off'
+  '@typescript-eslint/no-unsafe-member-access': 'off'
+  '@typescript-eslint/no-unsafe-call': 'off'
+  '@typescript-eslint/no-unsafe-return': 'off'
+  '@typescript-eslint/restrict-template-expressions': 'off'
+
+  # Disabled for no because not sure how to fix it
+  '@typescript-eslint/no-floating-promises': 'off'
+
+  ### ES6 ###
+  class-methods-use-this: 'off'
+  no-restricted-syntax: 'off'
+  prefer-destructuring: 'off'
+
+  # require or disallow Yoda conditions
+  # https://eslint.org/docs/rules/yoda
+  yoda: [error, never, { exceptRange: true }]
+
+  # add culry braces all the time
+  # https://eslint.org/docs/rules/curly
+  curly: [error, all]
+
+  # Prefer new line before return
+  # http://eslint.org/docs/rules/newline-before-return
+  newline-before-return: error
+
+  ### Prettier ###
+  prettier/prettier:
+    - error
+    - endOfLine: auto
+
+  ### Import ###
+
+  # Require modules with a single export to use a default export
+  # https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md
+  import/prefer-default-export: off
+
+  # https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/imports-first.md
+  import/first: off
+
+  import/no-deprecated: error
+  import/order: error
+  import/extensions: off
+overrides:
+  - files:
+      - '*.ts'
+    rules:
+      '@typescript-eslint/explicit-function-return-type':
+        - error
+        - allowExpressions: true
